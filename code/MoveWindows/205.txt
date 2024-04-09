@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        unordered_map<char,char> charMap;
+        unordered_map<char,char> charHash;
+        for(int i=0;i<s.length();i++){
+            auto it=charMap.find(s[i]);
+            auto it2=charHash.find(t[i]);
+            if((it!=charMap.end() && it->second!=t[i])|| (it2!=charHash.end()&&it2->second!=s[i])){
+                
+                    return false;
+                
+                    return false;
+                
+            
+                
+            }
+            charMap[s[i]]=t[i];
+            charHash[t[i]]=s[i];
+        }
+        return true;
+    }
+};

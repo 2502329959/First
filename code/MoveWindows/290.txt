@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+        unordered_map<char,string> p2s;
+        unordered_map<string,char> s2p;
+        istringstream  iss(s);
+        vector<string>  words;
+        string  word;
+        const char split=' ';
+        while  (getline(iss,  word,split))  {  //  使用空格作为分隔符
+            words.push_back(word);
+        }
+        if(pattern.length()!=words.size()){
+            return false;
+        }
+        for(int i=0;i<pattern.length();i++){
+            auto it=p2s.find(pattern[i]);
+            auto it2=s2p.find(words[i]);
+            if((it != p2s.end()&& it->second!=words[i])||
+            (it2!=s2p.end() && it2->second!=pattern[i])){
+                return false;
+            }
+            p2s[pattern[i]]=words[i];
+            s2p[words[i]]=pattern[i];
+        }
+        return true;
+    }
+};

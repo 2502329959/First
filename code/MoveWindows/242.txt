@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        int sv[26];
+        int tv[26];
+        memset(sv,0,sizeof sv);
+        memset(tv,0,sizeof sv);
+        if(s.length()!=t.length()){
+            return false;
+        }
+        for(int i=0;i<s.length();i++){
+            sv[s[i]-'a']++;
+            tv[t[i]-'a']++;
+        }
+        for(int i=0;i<26;i++){
+            if(sv[i]!=tv[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+};

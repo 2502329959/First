@@ -1,0 +1,57 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> tp=nums;
+        double mid=target/2.0;
+        sort(nums.begin(),nums.end());
+        int index;
+
+        for(int i=0;i<nums.size();i++){
+            if(mid<nums[i]){
+                index=i-1;
+                break;
+            }
+            if(mid==nums[i]){
+                index=i;
+                break;
+            }
+        }
+        int l=index;
+        int r=index+1;
+        vector<int> ans;
+        int flag=0;
+        int p=0;
+        cout<<nums[l]<<" "<<nums[r];
+        while(l>=0&&r<nums.size()){
+            if(nums[l]+nums[r]==target){
+                for(int i=0;i<tp.size();i++){
+                    if(nums[l]!=nums[r]){
+                        if(nums[l]==tp[i]){
+                            ans.push_back(i);
+                        }
+                        if(nums[r]==tp[i]){
+                            ans.push_back(i);
+                        }
+                    }else{
+                        if(nums[r]==tp[i] && flag==1 ){
+                            ans.push_back(i);
+                        }
+                        if(nums[l]==tp[i] && flag==0){
+                            ans.push_back(i);
+                            flag=1;
+                        }
+                    
+                    }
+                }
+                break;
+            }
+            if(nums[l]+nums[r]<target){
+                r++;
+            }
+            if(nums[l]+nums[r]>target){
+                l--;
+            }
+        }
+        return ans;
+    }
+};
